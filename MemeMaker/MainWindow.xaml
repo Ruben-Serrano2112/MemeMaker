@@ -60,6 +60,9 @@
             <Setter Property="HorizontalAlignment"
                     Value="Left"></Setter>
         </Style>
+
+        <local:BoleanoANumero x:Key="conversor"></local:BoleanoANumero>
+        
     </Window.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
@@ -120,13 +123,13 @@
                           IsChecked="True"
                           Tag="3"></CheckBox>
             </Grid>
-            <Border BorderThickness="{Binding ElementName=bordeCheckBox,Path=IsChecked}"
+            <Border BorderThickness="{Binding ElementName=bordeCheckBox,Path=IsChecked, Converter={StaticResource conversor}}"
+                    Width="{Binding ElementName=altoSlider,Path=Value}"
+                    Height="{Binding ElementName=anchoSlider,Path=Value}"
                     Background="#FFF3D2D2"
                     BorderBrush="Black"
                     Margin="10">
-                <Grid Width="{Binding ElementName=altoSlider,Path=Value}"
-                      Height="{Binding ElementName=anchoSlider,Path=Value}">
-
+                <Grid>
                     <Image Source="{Binding ElementName=imagenTextBox,Path=Text}" Stretch="Fill" />
                     <TextBlock Text="{Binding ElementName=superiorTextBox,Path=Text}"
                                Style="{StaticResource textoMeme}"

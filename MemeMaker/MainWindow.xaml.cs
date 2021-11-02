@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,32 @@ namespace MemeMaker
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public class BoleanoANumero : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if(value is Boolean)
+                {
+                    if ((bool)value)
+                    {
+                        return 3;
+                    }
+                    else return 0;
+                }
+                return 0;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                switch ((int)value) { 
+                    case 3:
+                    return true;
+                case 0:
+                    return false;
+                }
+                return false;
+            }
         }
     }
 }
